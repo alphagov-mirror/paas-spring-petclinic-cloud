@@ -10,3 +10,9 @@ spring:
   cloud:
     config:
       uri: http://config-server:8888
+---
+spring:
+  profiles: cloud
+  cloud:
+    config:
+      uri: ${vcap.services.config-server-si.credentials.uri}

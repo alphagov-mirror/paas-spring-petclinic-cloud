@@ -1,11 +1,25 @@
-server.port: 8888
+        
+info:
+  component: Config Server
 spring:
+  application:
+    name: configserver
+#  profiles:
+#    active: native
+  jmx:
+    default_domain: cloud.config.server
   cloud:
     config:
       server:
+#        native:
+#          searchLocations: file:${user.dir}/../spring-petclinic-cloud-config
+# If you want to point to the main git,
+#  then comment out spring.profiles.active and spring.cloud.config.server.native
+#  and uncomment spring.cloud.config.server.git
         git:
-          uri: https://github.com/spring-petclinic/spring-petclinic-microservices-config
-        # Use the File System Backend to avoid git pulling. Enable "native" profile in the Config Server.
-        native:
-          searchLocations: file:///${GIT_REPO}
+          uri: https://github.com/barsutka/spring-petclinic-cloud-config
+management:
+  context_path: /admin
+server:
+  port: 8888          
 

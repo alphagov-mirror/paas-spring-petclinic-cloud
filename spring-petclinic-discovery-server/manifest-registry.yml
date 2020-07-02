@@ -1,0 +1,16 @@
+---
+applications:
+- name: discovery-server
+  path: ./target/spring-petclinic-discovery-server-2.3.1.jar
+  timeout: 180
+  instances: 1
+  memory: 512M
+  random-route: true
+  env:
+    SPRING_PROFILES_DEFAULT: cloud
+    JAVA_OPTS: -Xss349k -Djava.security.egd=file:///dev/urandom
+    JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 11.+ }, memory_calculator: { stack_threads: 25 } }'
+    #comment out for single standalone node or modify to point to Eureka peer
+    #EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server2.emea.fe.gopivotal.com/eureka/
+  services: [config-server-si]
+    
